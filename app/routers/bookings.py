@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi.params import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.util import await_only
+
 
 from app.schemas.booking import BookingCreate
 from database import get_db

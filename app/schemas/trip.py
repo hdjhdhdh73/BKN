@@ -1,7 +1,7 @@
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class TripCreate(BaseModel):
-    from_ciy:str
+    from_city:str
     to_city:str
     price:float

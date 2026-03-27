@@ -11,7 +11,6 @@ class TripServices:
         db.add(trip)
         await db.commit()
         return trip
-
     @staticmethod
     async def get_all(db: AsyncSession):
         result = await db.execute(select(Trip))

@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.models.models import Base
 from app.routers.auth import router as auth_router
 from app.routers.bookings import router as bookings_router
+from app.routers.trips import router as trip_router
 from database import engine
 
 app = FastAPI()
@@ -14,3 +15,4 @@ async def startup():
 
 app.include_router(auth_router)
 app.include_router(bookings_router)
+app.include_router(trip_router)
