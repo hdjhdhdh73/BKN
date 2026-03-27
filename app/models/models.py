@@ -1,5 +1,6 @@
+from email.policy import default
 
-from sqlalchemy import Float, String, ForeignKey
+from sqlalchemy import Float, String, ForeignKey, Boolean
 from sqlalchemy.orm import DeclarativeBase, Mapped
 from sqlalchemy.testing.schema import mapped_column
 
@@ -11,6 +12,9 @@ class User(Base):
     id:Mapped[int]=mapped_column(primary_key=True)
     email:Mapped[str]=mapped_column(String, unique=True)
     password:Mapped[str]=mapped_column(String)
+    fullname:Mapped[str]=mapped_column(String,nullable=True)
+    phone:Mapped[str]=mapped_column(String,nullable=True)
+    role: Mapped[str] = mapped_column(String,default="user")
 
 class Trip(Base):
     __tablename__ = 'trips'
@@ -19,10 +23,14 @@ class Trip(Base):
     to_city:Mapped[str]=mapped_column(String)
     price:Mapped[float]=mapped_column(Float)
 
-
 class Booking(Base):
     __tablename__ = 'bookings'
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column (ForeignKey("users.id"))
     trip_id: Mapped[int] = mapped_column( ForeignKey("trips.id"))
+    status: Mapped[int] = mapped_column(String,default="created")
+    is_paid: Mapped[bool] = mapped_column(Boolean,default=False)
+
+
+
 
